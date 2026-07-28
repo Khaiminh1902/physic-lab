@@ -1,7 +1,12 @@
+"use client";
+
+import Matter from "matter-js";
 import React from "react";
 
-const page = () => {
-  return <div>page</div>;
+type BallData = {
+  body: Matter.Body;
+  mass: number;
+  id: number;
 };
 
-export default page;
+export default function Page() {}
