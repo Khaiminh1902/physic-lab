@@ -331,7 +331,7 @@ export default function Page() {
                       </div>
                     </div>
                   </div>
-
+                  .
                   {planet === name && (
                     <div className="h-2 w-2 rounded-full bg-slate-950 animate-pulse" />
                   )}
