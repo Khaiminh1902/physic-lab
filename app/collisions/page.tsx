@@ -254,5 +254,36 @@ export default function Page() {
     initSimulation();
   }, [resetKey]);
 
-  useEffect(() => {});
+  useEffect(() => {
+    ballsRef.current.forEach((b) => {
+      if (b.id === selectedId) {
+        b.body.render.fillStyle = "#facc15";
+      } else {
+        b.body.render.fillStyle = "#ffffff";
+      }
+    });
+  }, [selectedId]);
+
+  const addBall = () => {
+    if (!worldRef.current) return;
+
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const id = Date.now();
+    const ball = createBall(width / 2 + Math.random() * 100, height / 2, 1, id);
+
+    ballsRef.current.push(ball);
+    Matter.World.add(worldRef.current, ball.body);
+    setBallCount(ballsRef.current.length);
+  };
+
+  const removeBall = () => {
+    if (!worldRef.current) return;
+    if (ballsRef.current.length <= 1) return;
+    const removed = ballsRef.current.pop();
+    if (!removed) return;
+
+    Matter.World.remove(worldRef.current, removed.body);
+    setBallCount(ballsRef.current.length);
+  };
 }
