@@ -1,6 +1,7 @@
 "use client";
 
 import Matter from "matter-js";
+import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 
 type BallData = {
@@ -286,4 +287,59 @@ export default function Page() {
     Matter.World.remove(worldRef.current, removed.body);
     setBallCount(ballsRef.current.length);
   };
+
+  const increaseMass = () => {
+    const ball = ballsRef.current.find((b) => b.id === selectedId);
+    if (!ball) return;
+
+    ball.mass += 0.5;
+    Matter.Body.setMass(ball.body, ball.mass);
+  };
+
+  const decreaseMass = () => {
+    const ball = ballsRef.current.find((b) => b.id === selectedId);
+    if (!ball) return;
+
+    ball.mass = Math.max(0.1, ball.mass - 0.5);
+    Matter.Body.setMass(ball.body, ball.mass);
+  };
+
+  const resetSimulation = () => {
+    setRestKey((k) => k + 1);
+    setBallCount(2);
+    setSelectedId(null);
+    ballsRef.current = [];
+  };
+
+  return (
+    <div>
+      <canvas ref={canvasRef} className="absolute inset-0" />
+      <Link href="/" className="absolute left-4 top-4 z-10 font-semibold">
+        ← Back
+      </Link>
+      <div>
+        <div>Collisions Simulation</div>
+        <div>Drag the balls to launch them</div>
+      </div>
+      <div>
+        <div>Balls amount</div>
+        <div>{ballCount}</div>
+        <div>
+          <button onClick={removeBall}>-</button>
+        </div>
+        <div>
+          <button onClick={addBall}>+</button>
+        </div>
+        <div>
+          <button onClick={decreaseMass}>--</button>
+        </div>
+        <div>
+          <button onClick={increaseMass}>++</button>
+        </div>
+      </div>
+      <div>
+        <button onClick={resetSimulation}>Refresh</button>
+      </div>
+    </div>
+  );
 }

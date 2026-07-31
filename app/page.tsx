@@ -8,6 +8,9 @@ const page = () => {
       <Link href="/gravity" className="border p-2">
         Gravity
       </Link>
+      <Link href="/collisions" className="border p-2">
+        Collisions
+      </Link>
     </main>
   );
 };
