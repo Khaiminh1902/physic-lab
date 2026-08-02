@@ -1,8 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Matter from "matter-js";
 import Link from "next/link";
-import React, { useEffect, useRef, useState } from "react";
 
 type BallData = {
   body: Matter.Body;
@@ -12,37 +13,44 @@ type BallData = {
 
 export default function Page() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+
   const engineRef = useRef<Matter.Engine | null>(null);
   const worldRef = useRef<Matter.World | null>(null);
   const renderRef = useRef<Matter.Render | null>(null);
   const wallsRef = useRef<Matter.Body[]>([]);
   const ballsRef = useRef<BallData[]>([]);
+
   const draggingBall = useRef<Matter.Body | null>(null);
   const dragStart = useRef({ x: 0, y: 0 });
   const dragCurrent = useRef({ x: 0, y: 0 });
+
   const [ballCount, setBallCount] = useState(2);
   const [selectedId, setSelectedId] = useState<number | null>(null);
-  const [resetKey, setRestKey] = useState(0);
+
+  const [resetKey, setResetKey] = useState(0);
 
   function createBall(x: number, y: number, mass = 1, id = Date.now()) {
     const body = Matter.Bodies.circle(x, y, 25, {
       restitution: 1,
       friction: 0,
       frictionAir: 0,
-      render: {
-        fillStyle: " white",
-      },
+      render: { fillStyle: "#000000" },
     });
+
     Matter.Body.setMass(body, mass);
+
     return { body, mass, id };
   }
 
   function initSimulation() {
     const { Engine, Render, Runner, World, Bodies, Events, Query } = Matter;
+
     const width = window.innerWidth;
     const height = window.innerHeight;
+
     const engine = Engine.create();
     engine.gravity.y = 0;
+
     engineRef.current = engine;
     worldRef.current = engine.world;
 
@@ -60,13 +68,17 @@ export default function Page() {
     const onResize = () => {
       const width = window.innerWidth;
       const height = window.innerHeight;
+
       render.options.width = width;
       render.options.height = height;
+
       render.canvas.width = width;
       render.canvas.height = height;
 
       World.remove(engine.world, wallsRef.current);
+
       const thickness = 200;
+
       wallsRef.current = [
         Bodies.rectangle(width / 2, -thickness / 2, width, thickness, {
           isStatic: true,
@@ -90,6 +102,7 @@ export default function Page() {
     renderRef.current = render;
 
     const thickness = 200;
+
     wallsRef.current = [
       Bodies.rectangle(width / 2, -thickness / 2, width, thickness, {
         isStatic: true,
@@ -133,19 +146,23 @@ export default function Page() {
         x: e.clientX - rect.left,
         y: e.clientY - rect.top,
       };
+
       const body = getBallAt(mouse.x, mouse.y);
       if (!body) return;
 
       Matter.Body.setVelocity(body, { x: 0, y: 0 });
       Matter.Body.setAngularVelocity(body, 0);
+
       draggingBall.current = body;
       dragStart.current = mouse;
       dragCurrent.current = mouse;
+
       setSelectedId(ballsRef.current.find((b) => b.body === body)?.id ?? null);
     };
 
     const onMouseMove = (e: MouseEvent) => {
       if (!draggingBall.current) return;
+
       const rect = canvas.getBoundingClientRect();
       dragCurrent.current = {
         x: e.clientX - rect.left,
@@ -157,14 +174,17 @@ export default function Page() {
       if (!draggingBall.current) return;
 
       const body = draggingBall.current;
+
       const dx = dragStart.current.x - dragCurrent.current.x;
       const dy = dragStart.current.y - dragCurrent.current.y;
+
       const power = 0.02;
 
       Matter.Body.setVelocity(body, {
         x: dx * power,
         y: dy * power,
       });
+
       draggingBall.current = null;
     };
 
@@ -174,15 +194,20 @@ export default function Page() {
 
     Events.on(render, "afterRender", () => {
       const ctx = render.context;
+
       if (draggingBall.current) {
         const start = draggingBall.current.position;
+
         const dx = dragCurrent.current.x - dragStart.current.x;
         const dy = dragCurrent.current.y - dragStart.current.y;
+
         const end = {
           x: start.x - dx,
           y: start.y - dy,
         };
+
         const speed = Math.sqrt(dx * dx + dy * dy) * 0.02;
+
         ctx.beginPath();
         ctx.moveTo(start.x, start.y);
         ctx.lineTo(end.x, end.y);
@@ -202,15 +227,16 @@ export default function Page() {
           end.x - 10 * Math.cos(angle + 0.5),
           end.y - 10 * Math.sin(angle + 0.5),
         );
-        ctx.fillStyle = "#22d3ee";
+        ctx.fillStyle = "#000000";
         ctx.fill();
 
-        ctx.fillStyle = "#ffffff";
+        ctx.fillStyle = "#000000";
         ctx.font = "14px sans-serif";
         ctx.fillText(`${speed.toFixed(2)} m/s`, end.x + 10, end.y + 10);
       }
+
       ballsRef.current.forEach((b) => {
-        ctx.fillStyle = b.id === selectedId ? "#22d3ee" : "#ffffffaa";
+        ctx.fillStyle = b.id === selectedId ? "#000000" : "#ffffffaa";
         ctx.font = "12px sans-serif";
         ctx.fillText(
           `m=${b.mass.toFixed(1)}kg`,
@@ -219,6 +245,7 @@ export default function Page() {
         );
       });
     });
+
     Events.on(engine, "beforeUpdate", () => {
       ballsRef.current.forEach((b) => {
         const v = b.body.velocity;
@@ -251,6 +278,7 @@ export default function Page() {
       Engine.clear(engine);
     };
   }
+
   useEffect(() => {
     initSimulation();
   }, [resetKey]);
@@ -258,9 +286,9 @@ export default function Page() {
   useEffect(() => {
     ballsRef.current.forEach((b) => {
       if (b.id === selectedId) {
-        b.body.render.fillStyle = "#facc15";
+        b.body.render.fillStyle = "#000000";
       } else {
-        b.body.render.fillStyle = "#ffffff";
+        b.body.render.fillStyle = "#000000";
       }
     });
   }, [selectedId]);
@@ -270,21 +298,26 @@ export default function Page() {
 
     const width = window.innerWidth;
     const height = window.innerHeight;
+
     const id = Date.now();
+
     const ball = createBall(width / 2 + Math.random() * 100, height / 2, 1, id);
 
     ballsRef.current.push(ball);
     Matter.World.add(worldRef.current, ball.body);
+
     setBallCount(ballsRef.current.length);
   };
 
   const removeBall = () => {
     if (!worldRef.current) return;
     if (ballsRef.current.length <= 1) return;
+
     const removed = ballsRef.current.pop();
     if (!removed) return;
 
     Matter.World.remove(worldRef.current, removed.body);
+
     setBallCount(ballsRef.current.length);
   };
 
@@ -305,40 +338,90 @@ export default function Page() {
   };
 
   const resetSimulation = () => {
-    setRestKey((k) => k + 1);
+    setResetKey((k) => k + 1);
     setBallCount(2);
     setSelectedId(null);
     ballsRef.current = [];
   };
 
   return (
-    <div>
+    <div className="relative h-screen overflow-hidden">
       <canvas ref={canvasRef} className="absolute inset-0" />
+
       <Link href="/" className="absolute left-4 top-4 z-10 font-semibold">
         ← Back
       </Link>
-      <div>
-        <div>Collisions Simulation</div>
-        <div>Drag the balls to launch them</div>
-      </div>
-      <div>
-        <div>Balls amount</div>
-        <div>{ballCount}</div>
-        <div>
-          <button onClick={removeBall}>-</button>
+
+      <div className="absolute right-5 top-5 z-10">
+        <div className="w-72 rounded-3xl border p-5">
+          <div className="mb-5">
+            <div className="text-[11px] font-bold uppercase tracking-[0.35em]">
+              Collisions Simulator
+            </div>
+
+            <div className="mt-1 h-px" />
+
+            <div className="mt-3 text-2xl font-bold">Controls</div>
+
+            <div className="text-sm">Drag the balls to launch them</div>
+          </div>
+
+          <div className="space-y-4">
+            <div className="rounded-2xl border p-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="font-medium">Balls Amount</div>
+                  <div className="text-xs">{ballCount}</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex gap-3">
+              <button
+                onClick={removeBall}
+                className="cursor-pointer flex-1 rounded-xl border"
+              >
+                -
+              </button>
+
+              <button
+                onClick={addBall}
+                className=" cursor-pointer flex-1 rounded-xl border"
+              >
+                +
+              </button>
+            </div>
+
+            <div className="rounded-2xl border p-4">
+              <div className="mb-2">
+                <div className="font-medium">Mass</div>
+              </div>
+
+              <div className="flex gap-3">
+                <button
+                  onClick={decreaseMass}
+                  className="cursor-pointer flex-1 rounded-xl border"
+                >
+                  −
+                </button>
+
+                <button
+                  onClick={increaseMass}
+                  className="cursor-pointer flex-1 rounded-xl border"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+            <button
+              onClick={resetSimulation}
+              className="
+        "
+            >
+              Refresh
+            </button>
+          </div>
         </div>
-        <div>
-          <button onClick={addBall}>+</button>
-        </div>
-        <div>
-          <button onClick={decreaseMass}>--</button>
-        </div>
-        <div>
-          <button onClick={increaseMass}>++</button>
-        </div>
-      </div>
-      <div>
-        <button onClick={resetSimulation}>Refresh</button>
       </div>
     </div>
   );
