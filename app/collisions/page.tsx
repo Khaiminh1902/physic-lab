@@ -211,7 +211,7 @@ export default function Page() {
         ctx.beginPath();
         ctx.moveTo(start.x, start.y);
         ctx.lineTo(end.x, end.y);
-        ctx.strokeStyle = "#22d3ee";
+        ctx.strokeStyle = "#000000";
         ctx.lineWidth = 3;
         ctx.stroke();
 
@@ -236,7 +236,7 @@ export default function Page() {
       }
 
       ballsRef.current.forEach((b) => {
-        ctx.fillStyle = b.id === selectedId ? "#000000" : "#ffffffaa";
+        ctx.fillStyle = b.id === selectedId ? "#000000" : "#000000";
         ctx.font = "12px sans-serif";
         ctx.fillText(
           `m=${b.mass.toFixed(1)}kg`,
