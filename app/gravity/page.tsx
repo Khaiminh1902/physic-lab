@@ -284,7 +284,7 @@ export default function Page() {
   }, []);
 
   return (
-    <div className="relative h-screen w-screen overflow-hidden bg-white">
+    <div className="relative h-screen w-screen overflow-hidden">
       <Link
         href="/"
         className="absolute left-4 top-4 z-10 inline-flex items-center font-semibold"
