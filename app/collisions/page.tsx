@@ -353,7 +353,7 @@ export default function Page() {
       </Link>
 
       <div className="absolute right-5 top-5 z-10">
-        <div className="w-72 rounded-3xl border p-5">
+        <div className="w-72 border p-5">
           <div className="mb-5">
             <div className="text-[11px] font-bold uppercase tracking-[0.35em]">
               Collisions Simulator
@@ -367,32 +367,31 @@ export default function Page() {
           </div>
 
           <div className="space-y-4">
-            <div className="rounded-2xl border p-4">
-              <div className="flex items-center justify-between">
+            <div className=" border p-4">
+              <div className="flex items-center justify-between mn-2">
                 <div>
                   <div className="font-medium">Balls Amount</div>
-                  <div className="text-xs">{ballCount}</div>
+                  <div className="text-xs mb-2">{ballCount}</div>
                 </div>
+              </div>
+              <div className="flex gap-3">
+                <button
+                  onClick={removeBall}
+                  className="cursor-pointer flex-1 border"
+                >
+                  -
+                </button>
+
+                <button
+                  onClick={addBall}
+                  className=" cursor-pointer flex-1 border"
+                >
+                  +
+                </button>
               </div>
             </div>
 
-            <div className="flex gap-3">
-              <button
-                onClick={removeBall}
-                className="cursor-pointer flex-1 rounded-xl border"
-              >
-                -
-              </button>
-
-              <button
-                onClick={addBall}
-                className=" cursor-pointer flex-1 rounded-xl border"
-              >
-                +
-              </button>
-            </div>
-
-            <div className="rounded-2xl border p-4">
+            <div className=" border p-4">
               <div className="mb-2">
                 <div className="font-medium">Mass</div>
               </div>
@@ -400,14 +399,14 @@ export default function Page() {
               <div className="flex gap-3">
                 <button
                   onClick={decreaseMass}
-                  className="cursor-pointer flex-1 rounded-xl border"
+                  className="cursor-pointer flex-1 border"
                 >
                   −
                 </button>
 
                 <button
                   onClick={increaseMass}
-                  className="cursor-pointer flex-1 rounded-xl border"
+                  className="cursor-pointer flex-1 border"
                 >
                   +
                 </button>
@@ -415,8 +414,7 @@ export default function Page() {
             </div>
             <button
               onClick={resetSimulation}
-              className="
-        "
+              className="w-full border p-2 cursor-pointer flex items-center justify-center"
             >
               Refresh
             </button>
