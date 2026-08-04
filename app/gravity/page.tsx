@@ -292,16 +292,19 @@ export default function Page() {
         ← Back
       </Link>
 
-      <div className="absolute right-5 top-5 z-10">
-        <div className="">
-          <div className="">
-            <div className="">Gravity Simulator</div>
-
-            <div className="" />
-
-            <div className="">{planet}</div>
-
-            <div className="">{gravityPresets[planet]} m/s²</div>
+      <div className="absolute right-5 top-5 z-10 border p-3">
+        <div className="text-[11px] font-bold uppercase tracking-[0.35em]">
+          Gravity Simulator
+        </div>
+        <div>
+          <div className="flex flex-col items-center justify-center">
+            <div className="w-50 border p-2 mt-2 mb-2 items-center justify-center flex flex-col">
+              <div className="font-bold">{planet}</div>
+              <div className="flex gap-0.5 text-sm">
+                {gravityPresets[planet]}
+                <p>m/s²</p>
+              </div>
+            </div>
           </div>
 
           <div className="flex gap-1">
@@ -331,7 +334,6 @@ export default function Page() {
                       </div>
                     </div>
                   </div>
-                  .
                   {planet === name && (
                     <div className="h-2 w-2 rounded-full bg-slate-950 animate-pulse" />
                   )}
