@@ -26,6 +26,12 @@ const page = () => {
         >
           Particles
         </Link>
+        <Link
+          href="/pendulum"
+          className="border p-2 w-50 flex items-center justify-center hover:bg-slate-100"
+        >
+          Pendulum
+        </Link>
       </div>
     </main>
   );
