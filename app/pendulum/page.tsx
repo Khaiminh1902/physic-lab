@@ -382,8 +382,8 @@ export default function Page() {
         </button>
       </div>
 
-      <aside className="absolute bottom-4 right-4 top-20 z-10 w-80 overflow-hidden border md:bottom-5 md:right-5 md:top-24 md:w-84">
-        <div className="mb-5">
+      <aside className="absolute bottom-4 right-4 top-20 z-10 w-80 overflow-hidden border md:bottom-5 md:right-5 md:top-24 md:w-84 p-2">
+        <div className="mb-5 p-2">
           <div className="text-[11px] font-bold uppercase tracking-[0.35em] ">
             Pendulum Simulator
           </div>
@@ -448,10 +448,11 @@ export default function Page() {
         <button
           onClick={resetExperiment}
           className="
-          group relative mt-5 w-full overflow-hidden
+          mt-5 w-full
           px-4 py-3
           font-medium
           cursor-pointer
+          border 
         "
         >
           Refresh
