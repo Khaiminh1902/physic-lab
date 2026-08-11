@@ -620,16 +620,16 @@ export default function Page() {
 
       <Link
         href="/"
-        className="absolute left-4 top-4 z-20 inline-flex items-center font-semibold text-cyan-100 transition hover:text-cyan-200"
+        className="absolute left-4 top-4 z-20 inline-flex items-center font-semibold0"
       >
         ← Back
       </Link>
 
-      <div className="absolute right-4 top-4 z-20 w-[min(320px,calc(100vw-2rem))] rounded-3xl border border-cyan-400/20 bg-slate-950/55 p-4 backdrop-blur-2xl shadow-[0_0_60px_rgba(34,211,238,0.08)]">
-        <div className="text-[11px] font-bold uppercase tracking-[0.35em] text-cyan-300">
+      <div className="absolute right-4 top-4 z-20 w-[min(320px,calc(100vw-2rem))] border p-4">
+        <div className="text-[11px] font-bold uppercase tracking-[0.35em]">
           Spring Simulation
         </div>
-        <div className="mt-1 h-px bg-linear-to-r from-cyan-400/60 via-cyan-200/20 to-transparent" />
+        <div className="mt-1 h-px " />
 
         <div className="mt-4 space-y-3">
           <ControlRow
@@ -674,16 +674,10 @@ export default function Page() {
           <button
             onClick={resetSimulation}
             className="
-          group relative w-full overflow-hidden rounded-2xl
-          border border-cyan-300
-          bg-cyan-400
+          group relative w-full overflow-hidden 
+          border 
           px-4 py-3
           font-medium
-          text-slate-950
-          shadow-[0_0_35px_rgba(34,211,238,0.5)]
-          transition-all duration-300
-          hover:scale-[1.02]
-          hover:shadow-[0_0_45px_rgba(34,211,238,0.8)]
           cursor-pointer
         "
           >
@@ -702,7 +696,7 @@ export default function Page() {
               onDragStart={(event) =>
                 event.dataTransfer.setData("text/plain", weight.id)
               }
-              className="relative bottom-3 flex cursor-pointer items-end justify-center rounded-t-md border border-white/35 pb-3 text-sm font-bold text-slate-950 shadow-[0_10px_25px_rgba(15,23,42,0.35)] transition hover:-translate-y-1"
+              className="relative bottom-3 flex cursor-pointer items-end justify-center border border-white/35 pb-3 text-sm font-bold text-slate-950 shadow-[0_10px_25px_rgba(15,23,42,0.35)] transition hover:-translate-y-1"
               style={{
                 width: weight.width,
                 height: weight.height,
@@ -739,10 +733,10 @@ function ControlRow({
   onChange,
 }: ControlRowProps) {
   return (
-    <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-3">
+    <div className=" border border-slate-800 p-3">
       <div className="flex items-center justify-between gap-3">
-        <div className="text-sm font-medium text-cyan-100">{label}</div>
-        <div className="text-xs text-cyan-200/70">{value}</div>
+        <div className="text-sm font-medium">{label}</div>
+        <div className="text-xs">{value}</div>
       </div>
       <input
         type="range"
@@ -751,7 +745,7 @@ function ControlRow({
         step={step}
         value={current}
         onChange={(event) => onChange(Number(event.target.value))}
-        className="mt-2 w-full cursor-pointer accent-cyan-400"
+        className="mt-2 w-full cursor-pointer accent-black"
       />
     </div>
   );
