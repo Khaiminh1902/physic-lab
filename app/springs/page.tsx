@@ -231,10 +231,10 @@ export default function Page() {
         (_, index) => (index - (springCountRef.current - 1) / 2) * offsetGap,
       );
 
-      context.fillStyle = "rgba(6, 11, 24, 0.45)";
+      context.fillStyle = "#ffffff";
       context.fillRect(0, 0, width, height);
 
-      context.strokeStyle = "rgba(148,163,184,0.55)";
+      context.strokeStyle = "#000000";
       context.lineWidth = 8;
       context.lineCap = "round";
       context.beginPath();
@@ -242,7 +242,7 @@ export default function Page() {
       context.lineTo(baseX + 150, supportY);
       context.stroke();
 
-      context.strokeStyle = "rgba(226,232,240,0.95)";
+      context.strokeStyle = "#000000";
       context.lineWidth = 3;
       context.beginPath();
       context.moveTo(baseX, supportY);
@@ -252,18 +252,18 @@ export default function Page() {
       springOffsets.forEach((offsetX) => {
         const springX = baseX + offsetX;
 
-        context.strokeStyle = "rgba(244,248,252,0.95)";
+        context.strokeStyle = "#000000";
         context.lineWidth = 3.1;
         context.lineJoin = "round";
         context.lineCap = "round";
         drawSpring(springX, springTopY, springBottomY, 34);
 
-        context.strokeStyle = "rgba(148,163,184,0.45)";
+        context.strokeStyle = "#000000";
         context.lineWidth = 1.2;
         drawSpring(springX + 1.5, springTopY, springBottomY, 30);
       });
 
-      context.strokeStyle = "#e2e8f0";
+      context.strokeStyle = "#000000";
       context.lineWidth = 4;
       context.beginPath();
       context.moveTo(baseX - 18, hookY - 10);
@@ -274,9 +274,7 @@ export default function Page() {
       context.arc(baseX, hookY + 8, 18, Math.PI * 0.08, Math.PI * 1.08, false);
       context.stroke();
 
-      context.strokeStyle = isHookActive
-        ? "rgba(103,232,249,0.7)"
-        : "rgba(103,232,249,0.22)";
+      context.strokeStyle = isHookActive ? "#000000" : "#000000";
       context.lineWidth = 1.5;
       context.setLineDash([6, 6]);
       const dropZone = {
@@ -317,8 +315,8 @@ export default function Page() {
           left + blockWidth,
           stackY + blockHeight,
         );
-        gradient.addColorStop(0, "#ffffff");
-        gradient.addColorStop(1, "#d1d5db");
+        gradient.addColorStop(0, "#000000");
+        gradient.addColorStop(1, "#000000");
 
         context.fillStyle = gradient;
         context.fillRect(left, stackY, blockWidth, blockHeight);
@@ -696,12 +694,11 @@ export default function Page() {
               onDragStart={(event) =>
                 event.dataTransfer.setData("text/plain", weight.id)
               }
-              className="relative bottom-3 flex cursor-pointer items-end justify-center border border-white/35 pb-3 text-sm font-bold text-slate-950 shadow-[0_10px_25px_rgba(15,23,42,0.35)] transition hover:-translate-y-1"
+              className="relative bottom-3 flex cursor-pointer items-end justify-center border border-white/35 pb-3 text-sm font-bold text-white  hover:-translate-y-1 bg-black"
               style={{
                 width: weight.width,
                 height: weight.height,
-                backgroundImage:
-                  "linear-gradient(180deg, #ffffff 0%, #d1d5db 100%)",
+                backgroundImage: "#000000",
               }}
             >
               <span>{weight.label}</span>
