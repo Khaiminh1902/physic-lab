@@ -677,6 +677,7 @@ export default function Page() {
           px-4 py-3
           font-medium
           cursor-pointer
+          hover:bg-gray-100
         "
           >
             Refresh
