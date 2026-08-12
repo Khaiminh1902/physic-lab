@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
+<pre>
+██████╗ ██╗  ██╗██╗   ██╗███████╗██╗ ██████╗    ██╗       █████╗ ██████╗ 
+██╔══██╗██║  ██║╚██╗ ██╔╝██╔════╝██║██╔════╝    ██║      ██╔══██╗██╔══██╗
+██████╔╝███████║ ╚████╔╝ ███████╗██║██║         ██║      ███████║██████╔╝
+██╔═══╝ ██╔══██║  ╚██╔╝  ╚════██║██║██║         ██║      ██╔══██║██╔══██╗
+██║     ██║  ██║   ██║   ███████║██║╚██████╗    ███████╗ ██║  ██║██████╔╝
+╚═╝     ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝ ╚═════╝    ╚══════╝ ╚═╝  ╚═╝╚═════╝ 
+</pre>
+</div>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-16-black" />
+  <img src="https://img.shields.io/badge/React-19-61DAFB" />
+  <img src="https://img.shields.io/badge/TypeScript-5-3178C6" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4" />
+  <img src="https://img.shields.io/badge/Matter.js-0.20-6B7280" />
+</p>
+
+## About
+
+An interactive lab built with **Next.js**, **React**, **TypeScript**, **Tailwind CSS**, and **Matter.js**. Physic Lab lets you experiment with different physics concepts through different simulations (it's really just 5 for now)
+
+## Simulations
+
+The lab currently includes:
+
+- **Gravity** — Experiment with gravitational forces
+- **Collisions** — Explore collisions, velocity, restitution, etc
+- **Particles** — Create and interact with multiple particles (they're freaking small, it's hard to even grab it)
+- **Pendulum** — Simulate pendulum motion and experiment with its behavior
+- **Springs** — Explore spring forces, oscillation, and elasticity
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+Make sure you have **Node.js** and **npm** installed.
+
+### Installation
+
+```bash
+git clone https://github.com/Khaiminh1902/physic-lab.git
+cd physic-lab
+npm install
+```
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Experiments
 
-## Learn More
+Each simulation acts as a small virtual experiment. Adjust the available parameters and controls, interact with those objects, and observe how they responds
 
-To learn more about Next.js, take a look at the following resources:
+P.S: Some of the experiment is not really perfect with the real world so it may feels weird
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Copyright
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built by **Nguyen Khai Minh** for Macondo 2026 - Hackclub
